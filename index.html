@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/preloader.css">
+    <link rel="stylesheet" href="styles/form-style.css">
+    <link rel="stylesheet" href="styles/button-style.css">
+    <script src="https://use.fontawesome.com/0b4d945c88.js"></script>
+    <title>Shop</title>
+</head>
+
+<body>
+    <div class="preloader">
+        <svg class="preloader__image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor"
+                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z">
+            </path>
+        </svg>
+    </div>
+
+    <div id="app">
+        <h1>SHOP</h1>
+        <div class="flex">
+            <div class="form-control">
+                <h3>Search and Add Product</h3>
+                <label class="title-cart-product">Product's name<span>*</span></label>
+                <div class="for-input">
+                    <input type="text" v-model="inputValue" :style="{border: inputValue === '' ? '2px solid red' : ''}">
+                    <p v-if="inputValue === ''">*the input field is mandatory</p>
+                </div>
+                <label class="title-cart-product">About product</label>
+                <div class="for-input">
+                    <input type="text" id="inpTextArea" v-model="inputValue1">
+                </div>
+                <label class="title-cart-product">Link to product's image<span>*</span></label>
+                <div class="for-input">
+                    <input type="text" v-model="inputValue2"
+                        :style="{border: inputValue2 === '' ? '2px solid red' : ''}">
+                    <p v-if="inputValue2 === ''">*the input field is mandatory</p>
+                </div>
+                <label class="title-cart-product">Product's price<span>*</span></label>
+                <div class="for-input">
+                    <input type="number" v-model="inputValue3"
+                        :style="{border: inputValue3 === '' ? '2px solid red' : ''}">
+                    <p v-if="inputValue3 === ''">*the input field is mandatory</p>
+                </div>
+                <button class="btn primary add-to-shop" v-on:click="addToShop(index)">Add to
+                    Shop</button>
+            </div>
+            <div class="shop">
+                <ul>
+                    <li class="product" v-for="(ulProducts, index) in products">
+                        <img :src="ulProducts.imageLink" alt="">
+                        <p id="title">{{ulProducts.title}}</p>
+                        <p>{{ulProducts.description}}</p>
+                        <p>{{ulProducts.cost}} ₽</p>
+                        <button class="btn primary" v-on:click="addToCart(index)">Add to Cart</button>
+                        <button class="btn danger" v-on:click="deleteFromShop(index)">Delete from Shop</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="cart" v-if="cart.length !== 0">
+            <h2>Cart</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Count</th>
+                    <th>Sum</th>
+                    <th>Add/Remove</th>
+                </tr>
+                <tr v-for="(cartProduct, key) in cart">
+                    <td><img :src="cartProduct.imageLink" alt=""></td>
+                    <td>{{cartProduct.title}}</td>
+                    <td>{{cartProduct.cost}} ₽</td>
+                    <td>{{cartProduct.count}}</td>
+                    <td>{{cartProduct.cost * cartProduct.count}} ₽</td>
+                    <td class="buttons">
+                        <button v-on:click="addProduct(key)"><i class="fa fa-plus-circle fa-4x"
+                                aria-hidden="true"></i></button>
+                        <button v-on:click="removeProduct(key)"><i class="fa fa-minus-circle fa-4x"
+                                aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="empty-cart" v-else>Cart is empty</div>
+    </div>
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded_hiding');
+            window.setTimeout(function () {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, 1000);
+        }
+    </script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

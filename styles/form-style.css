@@ -1,0 +1,53 @@
+.form-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 15px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px silver;
+    padding: 15px;
+  }
+  
+.form-control input {
+    margin: 10px;
+    outline: none;
+    border: 2px solid #ccc;
+    color: #2c3e50;
+    padding: 2px 5px 2px 5px;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.for-input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    box-shadow: 2px 2px 4px grey;
+}
+
+.form-control label {
+    font-weight: 500;
+}
+  
+.form-control input:active,
+.form-control input:focus {
+    transition: border 0.22s;
+    border: 2px solid #42b983;
+}
+
+.for-input p {
+    margin: 0 0 5px 0;
+    font-size: small;
+    text-align: center;
+    color: #a4a4a4;
+}
+
+#inpTextArea {
+    height: 80px;
+}
+
+span {
+    color: #e53935;
+}
